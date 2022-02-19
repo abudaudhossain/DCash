@@ -24,6 +24,16 @@ const field = {
     },
     "country": {
         type: String,
+    },
+    "numberValidation":{
+        type: Boolean,
+        default: false,
+    },
+    "validationOTP":{
+        type: String
+    },
+    "OTPExpireAt":{
+        type: Date
     }
 }
 
