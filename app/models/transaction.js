@@ -4,10 +4,13 @@ const field = {
     "token": {
         type: String,  
     },   
-    "formAccountToken":{ // ==>cash out account 
+    "fromAccountToken":{ // ==>cash out account 
         type: String
     },
     "toAccountToken":{ // ==> cash in account
+        type: String
+    }, 
+    "sessionToken":{ // ==> from account session
         type: String
     },
     "transactionType":{ // 1.sent 2. cashOut 3. mobileRecharge

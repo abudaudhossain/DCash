@@ -5,7 +5,7 @@ const AppAccount = require("../models/account")// model
 
 module.exports = {
     createNewAccount: async (data) => {
-        const { name, phone, accountType, currency, city, country } = data;
+        const { name, phone, accountType, password, currency, city, country } = data;
         const token = utility.getToken("ACC");
         const validationOTP = utility.numberSubToken();
         const expireDate = new Date();
@@ -16,6 +16,7 @@ module.exports = {
             token,
             name,
             phone,
+            password,
             accountType,
             currency,
             city,

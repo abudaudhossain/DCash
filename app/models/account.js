@@ -10,6 +10,9 @@ const field = {
     "phone": {
         type: String,
     },
+    "password": {
+        type: String
+    },
     "accountType": { // 1. agent 2. personal 3.merchant
         type: String,
     },
@@ -25,14 +28,14 @@ const field = {
     "country": {
         type: String,
     },
-    "numberValidation":{
+    "numberValidation": {
         type: Boolean,
         default: false,
     },
-    "validationOTP":{
+    "validationOTP": {
         type: String
     },
-    "OTPExpireAt":{
+    "OTPExpireAt": {
         type: Date
     }
 }

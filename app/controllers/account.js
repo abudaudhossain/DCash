@@ -14,7 +14,7 @@ module.exports = {
             await validationHelper.accountExists(req.body.phone)
 
             const account = await userAccount.createNewAccount(req.body);
-            nativeResponse(account, "Create a new account", res)
+            nativeResponse(account, "😎😉Create a new account😍💋", res)
 
         } catch (error) {
             console.log(error);
@@ -27,7 +27,7 @@ module.exports = {
             numberValidationRequestValidation(req);
 
             const account = await OTPValidation(req.body)
-            nativeResponse(account, "Validation is success😍😘", res)
+            nativeResponse(account, "💋Validation is success😍😘", res)
             console.log("update status", account)
         } catch (error) {
             console.log(error);
