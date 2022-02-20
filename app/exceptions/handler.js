@@ -1,4 +1,5 @@
 const NotFoundError = require("./NotFountError")
+const UnauthorizedError = require("./UnauthorizedError")
 const ValidationError = require("./ValidationError")
 
 module.exports = function (error, res) {
@@ -11,6 +12,13 @@ module.exports = function (error, res) {
     }
     else if (error instanceof ValidationError) {
         res.status(400).send({
+            type: 'error',
+            message: `${error}`,
+            data: {}
+        })
+    }
+    else if (error instanceof UnauthorizedError) {
+        res.status(401).send({
             type: 'error',
             message: `${error}`,
             data: {}

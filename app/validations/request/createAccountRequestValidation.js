@@ -1,6 +1,4 @@
 const validationHelper = require("../validationsHelpers/validationHelper");
-const userAccount = require("../../services/userAccount")
-const handler = require("../../exceptions/handler");
 const ValidationError = require("../../exceptions/ValidationError");
 
 

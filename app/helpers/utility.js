@@ -25,6 +25,7 @@ module.exports = {
         else
             return true;
     },
+    
     getToken: (content) => {
 
         const getRandomIndex = () => {
