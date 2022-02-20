@@ -1,19 +1,31 @@
+
+/*
+phoneNumberValidation() ---> check to Phone Number here have any character
+numberSubToken() ---> create 5 digit random number
+getRandomIndex() ---> create new index for array less then 52
+stringSubToken() ---> create random string length 5
+getToken()       ---> create final unique token
+
+*/
 const numberSubToken = () => {
-    const numToken = Math.floor(Math.random() * 1000000).toString();
-    if (numToken.length <= 5) return numberSubToken();
-    return numToken;
+    const otp = Math.floor(Math.random() * 100000).toString();
+    if (otp.length > 4) {
+        return otp;
+    } else {
+        return numberSubToken();
+    }
 }
+
+
 module.exports = {
-    /*
-  numberSubToken() ---> create 5 digit random number
-  getRandomIndex() ---> create new index for array less then 52
-  stringSubToken() ---> create random string length 5
-  getToken()       ---> create final unique token
-  */
-    numberSubToken,
+    phoneNumberValidation: (num) => {
+        var re = /^[0-9]+$/;
+        if (re.test(num))
+            return false;
+        else
+            return true;
+    },
     getToken: (content) => {
-
-
 
         const getRandomIndex = () => {
             const index = Math.floor(Math.random() * 100);
@@ -34,5 +46,41 @@ module.exports = {
         }
 
         return numberSubToken() + stringSubToken() + content + stringSubToken() + numberSubToken()
+    },
+    numberSubToken,
+
+
+    getOperator: (num) => {
+        const USSDCode = num.slice(0, 3);
+        switch (USSDCode) {
+            case "019":
+            case "014":
+                return "Banglalink"
+
+            case "017":
+            case "013":
+                return "GrameenPhone "
+            case "018":
+                return "Robi"
+
+            case "016":
+                return "Airtel"
+            case "015":
+                return "Teletalk"
+            default:
+                return false;
+        }
+    },
+
+    // native response
+    nativeResponse(data, msg, res) {
+        res.status(200).send({
+            type: "success",
+            message: msg,
+            data
+        })
     }
 }
+
+
+

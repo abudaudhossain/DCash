@@ -39,4 +39,4 @@ const field = {
 
 const accountSchema = mongoose.Schema(field, { timestamps: true })
 
-module.exports = mongoose.model("Account", accountSchema);
+module.exports = mongoose.model("appAccount", accountSchema);

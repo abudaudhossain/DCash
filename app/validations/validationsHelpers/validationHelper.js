@@ -1,7 +1,7 @@
 const NotFoundError = require("../../exceptions/NotFountError");
 const ValidationError = require("../../exceptions/ValidationError");
 const userAccount = require("../../services/userAccount")
-
+const { getOperator, phoneNumberValidation } = require("../../helpers/utility");
 
 module.exports = {
     ObjExists: (keys, obj) => {
@@ -9,11 +9,45 @@ module.exports = {
 
         return true;
     },
+
     isEmpty: (values) => {
         for (let i = 0; i < values.length; i++) if (values[i].length === 0) throw new ValidationError("Required Should  Be not empty property")
     },
+
     // check account already exists or not 
     accountExists: async (phone) => {
         if (await userAccount.myAccount(phone)) throw new ValidationError("This Phone number already Exists")
+    },
+
+    phoneValidation: (v) => {
+        if (v.phone.length !== 11) throw new ValidationError("Required Should  Be 11 digit Phone Number");
+
+        // => validation 2: required to valid number 
+        if (phoneNumberValidation(v.phone)) throw new ValidationError("Required Should Be Number not any character")
+
+        // => validation 4: check phone operator
+        let operator = getOperator(v.phone);
+        if (!operator) throw new ValidationError("Required Should Be Bangladesh Phone operator")
+
+        return true
+
+    },
+
+    nameValidation: (name) => {
+        var regEx = /^[A-Za-z\s]+$/;
+        if (!regEx.test(name)) throw new ValidationError("Should be use Only character in name")
+
+    },
+
+    emailValidation: (e) => {
+        var filter = /^\s*[\w\-\+_]+(\.[\w\-\+_]+)*\@[\w\-\+_]+\.[\w\-\+_]+(\.[\w\-\+_]+)*\s*$/;
+        return (String(e).search(filter) != -1)
+    },
+
+    passwordValidation: (pass) => {
+        if (pass.length !== 6) throw new ValidationError("Required Should Be 6 digit number password")
+        var regEx = /^[0-9\s]+$/;
+        if (!regEx.test(pass)) throw new ValidationError("Only use Number In password")
     }
+
 }
