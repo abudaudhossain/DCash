@@ -1,7 +1,7 @@
 const setters = require("../helpers/setters");
 const utility = require("../helpers/utility");
 const AppAccount = require("../models/account")
-modules.exports = {
+module.exports = {
     createNewAccount: async (data) => {
         const { name, phone, accountType, currency, city, country } = data;
         const token = utility.getToken("ACC");
@@ -24,9 +24,14 @@ modules.exports = {
         })
         await newAccount.save();
 
-        return newAccount;
+        return setters.accountSetter([newAccount]);
     },
+
     accountList: async () => {
         return setters.accountSetter(await AppAccount.find({}));
+    },
+
+    myAccount: async(phone) =>{
+        return await AppAccount.findOne({phone: phone});
     }
 }

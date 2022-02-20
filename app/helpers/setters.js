@@ -1,10 +1,12 @@
 const accountObj = (accObj) =>{
+    console.log("setters l:2 ", accObj)
     return{
         AccountNo: accObj.token,
         name: accObj.name,
         phone: accObj.phone,
         balance: accObj.balance,
-        currency: accObj.currency
+        currency: accObj.currency,
+        numberValidation: accObj.numberValidation
     }
 }
 

@@ -1,6 +1,6 @@
 const numberSubToken = () => {
     const numToken = Math.floor(Math.random() * 1000000).toString();
-    if (numToken.length < 6) return numberSubToken;
+    if (numToken.length <= 5) return numberSubToken();
     return numToken;
 }
 module.exports = {
