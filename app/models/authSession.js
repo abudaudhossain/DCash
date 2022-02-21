@@ -19,7 +19,7 @@ const field = {
     "status": {
         type: String,
     },
-    "SessionExpireAt": {
+    "sessionExpireAt": {
         type: Date
     }
 }

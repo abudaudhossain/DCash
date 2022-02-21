@@ -4,6 +4,7 @@ const utility = require("../helpers/utility");
 const AppAccount = require("../models/account")// model
 
 module.exports = {
+    // ==> create new account
     createNewAccount: async (data) => {
         const { name, phone, accountType, password, currency, city, country } = data;
         const token = utility.getToken("ACC");
@@ -30,14 +31,17 @@ module.exports = {
         return setters.accountSetter([newAccount]);
     },
 
+    // ==> get all account list
     accountList: async () => {
         return setters.accountSetter(await AppAccount.find({}));
     },
 
+    // ==> find account by phone number
     myAccount: async (phone) => {
         return await AppAccount.findOne({ phone: phone });
     },
 
+    // ==> check phone number is validation
     updateNumberValidationStatus: async (phone) => {
         return setters.accountSetter([await AppAccount.findOneAndUpdate({ phone: phone }, { $set: { numberValidation: true } })])
     }
