@@ -1,5 +1,6 @@
 const NotFoundError = require("../../exceptions/NotFountError");
 const UnauthorizedError = require("../../exceptions/UnauthorizedError");
+const ValidationError = require("../../exceptions/ValidationError");
 const setters = require("../../helpers/setters");
 
 const AppAccount = require("../../models/account"); // model
@@ -12,6 +13,10 @@ module.exports = async (data) => {
 
     // ==> check account Exists or not
     if (!accountInfo) throw new NotFoundError("Please Create Account Now")
+
+    //==> check numberValidation
+    if (accountInfo.numberValidation === false) throw new ValidationError("🤑🤑🤑👾👾Please number validation first.👽👽👾👽👽👽")
+
 
     // ==> Password validation
     if (data.password !== accountInfo.password) throw new UnauthorizedError("😁😁Your password is wrong🤳🤔");

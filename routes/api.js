@@ -5,7 +5,8 @@ const services = require('../app/controllers/services');
 const router = express.Router();
 
 // user validation Middleware
-const validUserRequestMiddleware = require("../app/middleware/validUserRequestMiddleware")
+const validUserRequestMiddleware = require("../app/middleware/validUserRequestMiddleware");
+
 
 router.get("/", (req, res) => {
     res.send("api")

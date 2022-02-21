@@ -44,6 +44,9 @@ module.exports = {
     // ==> check phone number is validation
     updateNumberValidationStatus: async (phone) => {
         return setters.accountSetter([await AppAccount.findOneAndUpdate({ phone: phone }, { $set: { numberValidation: true } })])
+    },
+    AccountBalanceUpdate: async (phone, balance) => {
+        return setters.accountSetter([await AppAccount.findOneAndUpdate({ phone: phone }, { $set: { balance: balance } })])
     }
 
 }

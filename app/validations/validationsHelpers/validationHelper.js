@@ -2,6 +2,7 @@ const NotFoundError = require("../../exceptions/NotFountError");
 const ValidationError = require("../../exceptions/ValidationError");
 const userAccount = require("../../services/userAccount")
 const { getOperator, phoneNumberValidation } = require("../../helpers/utility");
+const NotAcceptableError = require("../../exceptions/NotAcceptableError");
 
 module.exports = {
     ObjExists: (keys, obj) => {
@@ -48,6 +49,29 @@ module.exports = {
         if (pass.length !== 6) throw new ValidationError("Required Should Be 6 digit number password")
         var regEx = /^[0-9\s]+$/;
         if (!regEx.test(pass)) throw new ValidationError("Only use Number In password")
+    },
+
+    transactionAccountTypeValidation: (transactionType, fromAccountType, toAccountType,) => {
+        console.log("Transaction type validationHelper l: 55", transactionType, fromAccountType, toAccountType,)
+        if (transactionType === "cashIn") {
+            if (fromAccountType !== "agent") throw new NotAcceptableError("without agent account cannot cashIn")
+            if (toAccountType !== "personal") throw new NotAcceptableError("only cashIn personal account")
+        }
+        else if (transactionType === "cashOut") {
+            if (fromAccountType !== "personal") throw new NotAcceptableError("only cash out personal account")
+            if (toAccountType !== "agent") throw new NotAcceptableError("without agent account cannot cashIn")
+        }
+        else if (transactionType === "cashOut") {
+            if (fromAccountType !== "personal") throw new NotAcceptableError("only cash out personal account")
+            if (toAccountType !== "agent") throw new NotAcceptableError("without agent account cannot cashIn")
+        }
+        else if (transactionType === "payment") {
+            if (fromAccountType !== "personal") throw new NotAcceptableError("only payment personal account")
+            if (toAccountType !== "merchant") throw new NotAcceptableError("Payment in only merchant account")
+        }
+         else {
+            throw new NotFoundError("Your transaction is invalid")
+        }
     }
 
 }
