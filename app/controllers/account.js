@@ -28,7 +28,7 @@ module.exports = {
 
             const account = await OTPValidation(req.body)
             nativeResponse(account, "💋Validation is success😍😘", res)
-            console.log("update status", account)
+
         } catch (error) {
             console.log(error);
             handler(error, res)

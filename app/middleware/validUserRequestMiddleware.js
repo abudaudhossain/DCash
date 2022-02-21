@@ -33,12 +33,12 @@ module.exports = async (req, res, next) => {
         if (session.status === "Inactive") throw new ValidationError("🤑🤑🤑👾👾session Is inactive.Please Login Now.👽👽👾👽👽👽")
 
         // ==> check session time
-        /*const nowTime = new Date();
+        const nowTime = new Date();
         if (session.sessionExpireAt < nowTime) {
             // update status
             await AppAuthSession.findOneAndUpdate({ token: sessionToken }, { $set: { status: "Inactive" } })
             throw new ValidationError("🤑🤑🤑👾👾Please Login again Now. Session is Expired👽👽👾👽👽👽");
-        };*/
+        };
 
         // ==> update sessionExpireAt 
         const sessionExpireAt = new Date();

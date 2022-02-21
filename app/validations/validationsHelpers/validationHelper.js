@@ -69,7 +69,7 @@ module.exports = {
             if (fromAccountType !== "personal") throw new NotAcceptableError("only payment personal account")
             if (toAccountType !== "merchant") throw new NotAcceptableError("Payment in only merchant account")
         }
-         else {
+        else {
             throw new NotFoundError("Your transaction is invalid")
         }
     }

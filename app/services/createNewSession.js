@@ -17,7 +17,7 @@ module.exports = async (data) => {
         sessionExpireAt
     })
     await newAuthSession.save();
-    
+
     console.log("CrateNewSession l20: ", newAuthSession)
     return {
         type: "success",

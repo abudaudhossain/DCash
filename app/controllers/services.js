@@ -5,7 +5,7 @@ const cashInRequestValidation = require("../validations/request/transactionReque
 const transactionValidation = require("../validations/ServiceValidation/transactionValidation");
 
 module.exports = {
-    cashIn: async (req, res) => {
+    transaction: async (req, res) => {
         try {
             // ==> req data validation
             cashInRequestValidation(req);

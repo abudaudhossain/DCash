@@ -16,6 +16,6 @@ router.post('/newAccount', account.createAccount) // create new account
 router.post("/numberValidation", account.numberValidation) // number validation
 router.post("/login", accountAuth.login); // login validation
 
-router.post("/cashIn", validUserRequestMiddleware, services.cashIn)
+router.post("/transaction", validUserRequestMiddleware, services.transaction)
 
 module.exports = router;

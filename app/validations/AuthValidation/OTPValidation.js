@@ -15,7 +15,7 @@ module.exports = async (data) => {
     const NowTime = new Date();
     console.log(NowTime, accountInfo.OTPExpireAt);
     if (NowTime > accountInfo.OTPExpireAt) throw new UnauthorizedError("Your OTP date Expired");
-    
+
     // ==> check otp
     if (data.otp !== accountInfo.validationOTP) throw new UnauthorizedError("Your OTP is wrong");
 
